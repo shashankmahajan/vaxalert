@@ -24,7 +24,7 @@ def get_vaccine_availability_data_by_pincode_date(
 
     Returns:
         dict: API JSON response as python dict
-    """    
+    """
 
     assert len(pincode) == 6, 'Indian Pincodes are only 6 digits long mate!'
 
