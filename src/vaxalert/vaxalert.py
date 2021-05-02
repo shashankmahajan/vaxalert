@@ -236,7 +236,7 @@ def generate_available_appointments_message(
 
 
 # %%
-@ repeat(every(10).seconds)
+@ repeat(every(1).minutes)
 def run_vaccine_slot_alert():
     """Top level function to trigger the run and repeat periodically
     """
@@ -244,7 +244,7 @@ def run_vaccine_slot_alert():
 
     messages = generate_available_appointments_message(
         294,  # BBMP
-        ['560066', '560048', '560035', '560103'],
+        ['560066', '560048', '560035', '560103', '560017'],
         5,
         [18, 45]
     )
