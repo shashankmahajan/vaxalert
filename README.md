@@ -33,7 +33,35 @@ chmod +x src/vaxalert/vaxalert.py
 python3 -u vaxalert.py
 ```
 
-If you want to change the polling frequency, update in `vaxalert.py` at line. Needs to be consistent with syntax of the `schedule` package.
+* If you want to change the polling frequency, update in `vaxalert.py` at line. Needs to be consistent with syntax of the `schedule` package.
 ```python
 @repeat(every(5).minutes)
 ```
+* The only change needed to script to suit your district is at lines
+```python
+messages = generate_available_appointments_message(
+        294,  # BBMP
+        ['560066', '560048', '560035', '560103', '560017'], # PIN Codes of your interest
+        5,
+        [18, 45] # Age filters, feel free to drop 45 if not looking for parents etc.
+    )
+```
+'294' is the `district_id` for BBMP Bengaluru. I found it using a bit of JS debugging on the COWIN page. Place breakpoint as in the image below:
+![Getting district_id](./district_id.PNG)
+
+Set the pin codes where feasible for you to get shot!
+
+Set the age filters, quite trivial.
+
+* Setting up telegram bot to post updates to Telegram group chats:
+I did from scratch, found this useful -> [How to create a Telegram bot, and send messages with Python](https://medium.com/@ManHay_Hong/how-to-create-a-telegram-bot-and-send-messages-with-python-4cf314d9fa3e)
+
+This step will yield you a auth token for the Telegram bot as well as the group chat ID, both of which are needed for this script to work. Set them as in step (5) above.
+
+Let me know if clarification is needed on some step.
+
+* Thanks to [Giri](https://github.com/iev6) who pointed out how to deploy this using the [Replit](https://replit.com/~) web application. You can simply fork this repo, make your necessary code changes, deploy on Replit by connecting it to your forked repo! Its reasonably intuitive to use.
+
+
+
+## Stay safe! Get shot! May be antibodies be with you!
